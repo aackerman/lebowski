@@ -1,11 +1,60 @@
 var request = require('request');
 var nomnom  = require('nomnom');
+var through = require('through');
+
+var joinlines = function(lines) {
+  var ret = []
+  lines.forEach(function(line){
+    ret.push(line.character.name + '\n' + line.text);
+  });
+  return ret.join('\n\n') + '\n';
+};
+
+var qthrough = through(function(buf){
+  var response = '';
+  try {
+    var data = JSON.parse(buf);
+    if (data['quote'] && data['quote']['lines']) {
+      response = joinlines(data['quote']['lines'])
+    }
+  } catch(e) {
+    response = 'Error ' + e;
+  }
+  this.queue(response);
+});
+
+var linethrough = through(function(buf){
+  var response = '';
+  try {
+    var data = JSON.parse(buf);
+    if (data['line']) {
+      response = joinlines([data['line']])
+    }
+  } catch(e) {
+    response = 'Error ' + e;
+  }
+  this.queue(response);
+});
+
+var searchthrough = through(function(buf){
+  var response = '';
+  try {
+    var data = JSON.parse(buf);
+    if (data['results'] && data['results'].length) {
+      response = joinlines(data['results'][0]['lines'])
+    }
+  } catch(e) {
+    response = 'Error ' + e;
+  }
+  this.queue(response);
+});
 
 nomnom
   .command('random')
   .callback(function(opts) {
     request
       .get('http://lebowski.me/api/quotes/random')
+      .pipe(qthrough)
       .pipe(process.stdout);
   })
   .help("Get a random quote");
@@ -18,6 +67,7 @@ nomnom
     if (!isNaN(id)) {
       request
         .get('http://lebowski.me/api/quotes/' + id)
+        .pipe(qthrough)
         .pipe(process.stdout);
     }
   })
@@ -31,6 +81,7 @@ nomnom
     if (!isNaN(id)) {
       request
         .get('http://lebowski.me/api/lines/' + id)
+        .pipe(linethrough)
         .pipe(process.stdout);
     }
   })
@@ -43,6 +94,7 @@ nomnom
     var url = 'http://lebowski.me/api/quotes/search?term=' + encodeURI(args.join(' '));
     request
       .get(url)
+      .pipe(searchthrough)
       .pipe(process.stdout);
   })
   .help("Search by slurped arguments e.g.: lebowski search that poor woman");
