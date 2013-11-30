@@ -41,7 +41,6 @@ nomnom
   .callback(function(args) {
     var args = args['_'].slice(1);
     var url = 'http://lebowski.me/api/quotes/search?term=' + encodeURI(args.join(' '));
-    console.log(url);
     request
       .get(url)
       .pipe(process.stdout);
