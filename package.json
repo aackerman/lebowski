@@ -9,8 +9,8 @@
     "through": "~2.3.4"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "lebowski": "./bin/lebowski"
   },
   "author": "theron17@gmail.com",
   "license": "MIT"
