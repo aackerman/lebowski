@@ -16,16 +16,16 @@ Get a random quote from The Big Lebowski
 lebowski random
 ```
 
-Get a line by id
+Get a line by `id`
 
 ```
 lebowski line 5
 ```
 
-Get a quote by id
+Get a quote by `id`
 
 ```
-lebowski quote
+lebowski quote 84
 ```
 
 Search for the most relevant quote. `lebowski search [bare words are slurped]`
