@@ -1,6 +1,6 @@
 # lebowski(1)
 
-CLI client for [lebowski.me](http://lebowski.me)
+JS CLI client for [lebowski.me](http://lebowski.me)
 
 ## Installation
 
