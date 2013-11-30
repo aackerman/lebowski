@@ -46,6 +46,6 @@ nomnom
       .get(url)
       .pipe(process.stdout);
   })
-  .help("Get a line by id");
+  .help("Search by slurped arguments e.g.: lebowski search that poor woman");
 
 nomnom.parse();
