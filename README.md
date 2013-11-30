@@ -10,7 +10,7 @@ npm install -g lebowski
 
 ## Usage
 
-Get a random quote from the big lebowksi
+Get a random quote from The Big Lebowski
 
 ```
 lebowski random
