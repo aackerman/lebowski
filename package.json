@@ -1,8 +1,8 @@
 {
   "name": "lebowski",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "CLI client for lebowski.me",
-  "main": "index.js",
+  "main": "bin/lebowski",
   "dependencies": {
     "request": "~2.27.0",
     "nomnom": "~1.6.2",
