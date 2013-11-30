@@ -8,10 +8,19 @@
     "nomnom": "~1.6.2",
     "through": "~2.3.4"
   },
-  "devDependencies": {},
   "bin": {
     "lebowski": "./bin/lebowski"
   },
   "author": "theron17@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aackerman/lebowski.git"
+  },
+  "keywords": [
+    "lebowski"
+  ],
+  "bugs": {
+    "url": "https://github.com/aackerman/lebowski/issues"
+  }
 }
