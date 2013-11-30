@@ -28,7 +28,7 @@ Get a quote by id
 lebowski quote
 ```
 
-Search for the most relevant quote. `lebowski search [words are slurped and uri encoded]`
+Search for the most relevant quote. `lebowski search [bare words are slurped]`
 
 ```
 lebowski search that poor woman
